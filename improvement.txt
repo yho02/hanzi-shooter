@@ -1,0 +1,15 @@
+There are multiples bug in the first version of this game: 
+- [ ] Falling word bug:
+	1. The words falling down not smooth at all,
+	2. After the first word, the second word going up from the bottom of the screen, instead of the other way around
+- [ ] Swap character image:
+	1. The initial character is an emoji, I want to swap it to an animated character
+	2. Eventually, I want to add animation and the character can move around horizontally
+- [ ] Double check enter or space to submit:
+	1. There is an option to click 'Shoot', I want to get rid of this one
+	2. Users can either do Enter or Space to submit their guess
+- [ ] Add multiple simultaneous falling words: currently, there is only one word falling down at a time, I want multiple, maybe 3 can appear simultaneously, just different heights
+- [ ] Later, I want to add multiple characters so users can choose from 
+- [ ] I also want to add audio, after user type the word correctly, or the words reaches the solider, the pronunciation will be sounded. 
+- [ ] Right now, user needs to add character, pinyin, and translation, later, I would like to add an file of Chinese dictionary, all user need to put in is the the Chinese characters
+	In case that there is no translation and pinyin available, I can prompt user to put in their own input, or they could skip it 
