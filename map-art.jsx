@@ -431,7 +431,7 @@ function IslandArt({ kind, selected }) {
   );
 }
 
-const SEAS = { easy: "Calm Seas", medium: "Rough Seas", hard: "Storm Front" };
+const SEAS = { easy: "Easy · Calm Seas", medium: "Medium · Rough Seas", hard: "Hard · Storm Front" };
 const ISLAND_POS = { easy: [15, 62], medium: [50, 36], hard: [85, 62] };
 
 export function DifficultyMap({ options, value, onChange }) {

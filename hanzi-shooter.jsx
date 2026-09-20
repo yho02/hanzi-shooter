@@ -26,9 +26,9 @@ import { HSK_LEVELS, loadDictionary, loadLevel, splitIntoParts } from "./hsk-dic
 // ---------- config ----------
 const DIFFICULTY_ORDER = ["easy", "medium", "hard"];
 const DIFFICULTY = {
-  easy: { label: "Easy", fallMs: 9000 },
-  medium: { label: "Medium", fallMs: 7000 },
-  hard: { label: "Hard", fallMs: 4800 },
+  easy: { label: LEVEL_NAMES[0], fallMs: 9000 },
+  medium: { label: LEVEL_NAMES[1], fallMs: 7000 },
+  hard: { label: LEVEL_NAMES[2], fallMs: 4800 },
 };
 
 const MAX_LIVES = 3;
@@ -750,9 +750,7 @@ export default function HanziShooter() {
           ))}
         </div>
         <div style={styles.scoreText}>Score {score}</div>
-        <div style={styles.diffText}>
-          {DIFFICULTY[DIFFICULTY_ORDER[speedIndex]].label} · {LEVEL_NAMES[speedIndex]}
-        </div>
+        <div style={styles.diffText}>{LEVEL_NAMES[speedIndex]}</div>
         <InkButton onClick={pauseGame} style={styles.pauseBtn} aria-label="Pause game">
           Pause
         </InkButton>

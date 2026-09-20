@@ -9,7 +9,7 @@ A browser game for practising Chinese vocabulary. Words fall from the sky, and y
 1. **Pick a guessing mode**
    - **Pinyin**: you see the character and its meaning, type the sound. Tone marks are not needed (`nihao` matches `nǐhǎo`).
    - **Character**: you see the pinyin and meaning, and you type the hanzi with your IME.
-2. **Pick a difficulty**: Easy, Medium or Hard. This sets how fast the words fall.
+2. **Pick a difficulty**: Water 7 (easy), Marineford (medium) or Dressrosa (hard). This sets how fast the words fall.
 3. **Pick a word list**
    - **Basic**: a small sample set to try the game.
    - **HSK 1–6 and HSK 7–9**: the real HSK 3.0 vocabulary. Each level is split into parts of 20 words, and you choose which part to play. This keeps the big levels (HSK 7–9 has about 4,500 words) playable.
@@ -21,7 +21,7 @@ A browser game for practising Chinese vocabulary. Words fall from the sky, and y
 - You have **3 lives**. A word that reaches your ship costs one life.
 - Words keep falling until you type them correctly or they land. A wrong guess costs nothing, so keep guessing.
 - Every **10th word** you get right gives back one life (never more than 3).
-- Clear the whole list and the words speed up to the next difficulty. Clear it on Hard and you win.
+- Clear the whole list and the words speed up to the next difficulty. Clear it on Dressrosa and you win.
 - When the game ends you see the words you missed, and you can practise the full list again or only the missed words.
 
 ## Run it locally
