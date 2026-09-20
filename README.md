@@ -64,6 +64,12 @@ The CSVs were extracted and merged into one dataset, published separately as **[
 
 Translations are not proofread by a human, so treat them as a study aid and not a dictionary. This project is unofficial and is not affiliated with or endorsed by CTI or Hanban.
 
+## One Piece inspiration
+
+The game is inspired by *One Piece*, created by Eiichiro Oda. The three difficulty levels are named after arcs of the Straw Hats' journey (Water 7, Marineford and Dressrosa), and the map, the pirate ship and the flag are my attempt to depict that journey.
+
+This is a fan-made, non-profit hobby project. It is not affiliated with, endorsed by or sponsored by Eiichiro Oda, Shueisha, Toei Animation or any other rights holder. *One Piece* and its characters, names and imagery belong to their respective owners, and no copyright infringement is intended. The artwork in this repo is drawn for the game, and the project earns no money.
+
 ## Licence
 
 The game code is released under the [MIT License](LICENSE). The vocabulary data has its own terms, described above.
