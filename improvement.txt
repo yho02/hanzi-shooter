@@ -1,15 +1,50 @@
-There are multiples bug in the first version of this game: 
-- [ ] Falling word bug:
-	1. The words falling down not smooth at all,
-	2. After the first word, the second word going up from the bottom of the screen, instead of the other way around
-- [ ] Swap character image:
-	1. The initial character is an emoji, I want to swap it to an animated character
-	2. Eventually, I want to add animation and the character can move around horizontally
-- [ ] Double check enter or space to submit:
-	1. There is an option to click 'Shoot', I want to get rid of this one
-	2. Users can either do Enter or Space to submit their guess
-- [ ] Add multiple simultaneous falling words: currently, there is only one word falling down at a time, I want multiple, maybe 3 can appear simultaneously, just different heights
-- [ ] Later, I want to add multiple characters so users can choose from 
-- [ ] I also want to add audio, after user type the word correctly, or the words reaches the solider, the pronunciation will be sounded. 
-- [ ] Right now, user needs to add character, pinyin, and translation, later, I would like to add an file of Chinese dictionary, all user need to put in is the the Chinese characters
-	In case that there is no translation and pinyin available, I can prompt user to put in their own input, or they could skip it 
+Things I would like to improve
+
+---
+HSK List Integration — LOW PRIORITY (postponed on Sep 18, finish game design + animation first)
+
+How fetching works:
+- The browser can't read folders on your computer. It can only ask a server for a file with `fetch`.
+- The CSV files are plain text. We fetch the text, turn each line into { hanzi, pinyin, meaning }, then cut the list into 20-word parts.
+
+Options and trade-offs:
+- A. `fetch` from the `public` folder (CHOSEN, and recommended)
+    - Move `hsk_vocab/` into `public/`. Vite serves it at /hsk_vocab/hsk_vocab_level_1.csv
+    - Good: only downloads the level the user picks (level 7-9 is 280 KB). Game code stays small. Edit a CSV and refresh, no code change.
+    - Bad: `fetch` is async, so we need `await`, a loading state, and error handling. Needs a server (Vite dev server is fine).
+- B. Import as text: `import lvl1 from "./x.csv?raw"`
+    - Good: no fetch, no await, no loading state. Simplest code.
+    - Bad: all 7 files (~590 KB) get bundled into the JS even if the user only plays HSK 1. Slower first load.
+- C. Convert CSV to JSON with a one-time script
+    - Good: no CSV parsing in the browser.
+    - Bad: extra step every time a CSV changes. Lose the "just edit the CSV" workflow.
+- D. Paste words into the code (like DEFAULT_WORDS)
+    - Bad idea for ~9,000 words.
+
+Steps for option A:
+1. User clicks "HSK 1".
+2. fetch("/hsk_vocab/hsk_vocab_level_1.csv")
+3. `await response.text()` gives one long string.
+4. Parse: split into lines, skip the header row, turn each line into { hanzi, pinyin, meaning }.
+5. Split into parts of 20 with slice(0, 20), slice(20, 40), ...
+6. User picks a part -> shuffle it (we already have `shuffle`) -> beginRun(list).
+
+Traps in the CSV files:
+1. Commas inside quotes. Example: 4,爱心,àixīn,"compassion; ... charity (bazaar, golf day etc)"
+   - `line.split(",")` (used in parseImport) cuts the meaning in half.
+   - Fix: split only on the first 3 commas and keep the rest as `meaning`, or use the `papaparse` library.
+2. Hidden BOM character at the start of the file (before "level"). Only hurts the header row, so skip the header.
+3. Column names differ. CSV is level,word,pinyin,english. Game uses hanzi, pinyin, meaning. Need to map them.
+4. Level 7-9 is one file with ~4,550 words (~228 parts of 20). Level 1 has ~257 words (~13 parts). Need a way to pick from a long list of parts.
+5. Some words appear in more than one level with different pinyin (e.g. 啊 in level 2 and 4). Not a bug.
+
+Quick test when we come back: move `hsk_vocab` into `public/`, run the dev server, open http://localhost:5173/hsk_vocab/hsk_vocab_level_1.csv. If you see the text, fetching works.
+
+---
+
+Publishing on GitHub Pages (later)
+- Vite builds static files, so GitHub Pages can host it for free. Keep single files under 100 MB and the whole site under ~1 GB.
+- Set `base: "/repo-name/"` in vite.config.js.
+- The HSK fetch path "/hsk_vocab/..." will break under that base. Use `import.meta.env.BASE_URL + "hsk_vocab/..."`.
+
+
